@@ -2,6 +2,14 @@ const express = require('express');
 const cors = require('cors');
 const fileUpload = require('express-fileupload');
 const path = require('path');
+const fs = require('fs');
+
+// Ensure 'uploads' directory exists (especially for Render)
+const uploadsDir = path.join(__dirname, 'uploads');
+if (!fs.existsSync(uploadsDir)) {
+  fs.mkdirSync(uploadsDir);
+}
+
 
 const parseResume = require('./utils/parseResume');
 const compareLogic = require('./utils/compareLogic');
@@ -52,5 +60,6 @@ app.post('/analyze', async (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`✅ Server running at http://localhost:${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });
+
