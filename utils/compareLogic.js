@@ -18,7 +18,7 @@ ${jobDescription}
 `;
 
   const response = await axios.post(
-    'https://fifty-parrots-report.loca.lt/api/generate',
+    'http://localhost:11434/api/generate',
     {
       model: "phi3",
       prompt,
